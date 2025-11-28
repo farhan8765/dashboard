@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import Sidebar from './components/Sidebar';
+import TopBar from './components/TopBar';
 
 const AnalyticsDashboard: React.FC = () => {
   const [activeSection, setActiveSection] = useState<
@@ -18,97 +20,19 @@ const AnalyticsDashboard: React.FC = () => {
 
   return (
     <div className="analytics-app">
-      <aside className="sidebar">
-      <div className="sidebar-brand">
-  <img 
-    src="/images/logo.png" 
-    alt="AI Mark Lab Logo" 
-    className="w-28 h-auto object-contain"
-  />
-</div>
-
-
-        <nav className="sidebar-nav">
-          <button
-            type="button"
-            className={`nav-item ${activeSection === 'analytics' ? 'active' : ''}`}
-            onClick={() => setActiveSection('analytics')}
-          >
-            <span className="nav-dot" />
-            <span>Analytics</span>
-          </button>
-          <button
-            type="button"
-            className={`nav-item ${activeSection === 'audit' ? 'active' : ''}`}
-            onClick={() => setActiveSection('audit')}
-          >
-            <span className="nav-dot" />
-            <span>Audit Report</span>
-          </button>
-          <button
-            type="button"
-            className={`nav-item ${activeSection === 'packages' ? 'active' : ''}`}
-            onClick={() => setActiveSection('packages')}
-          >
-            <span className="nav-dot" />
-            <span>Packages</span>
-          </button>
-          <button
-            type="button"
-            className={`nav-item ${activeSection === 'account' ? 'active' : ''}`}
-            onClick={() => setActiveSection('account')}
-          >
-            <span className="nav-dot" />
-            <span>Account</span>
-          </button>
-        </nav>
-
-        <div className="sidebar-user">
-          <div className="user-avatar">W</div>
-          <div className="user-info">
-            <div className="user-name">Wade Warren</div>
-            <div className="user-role">Engineer</div>
-          </div>
-        </div>
-      </aside>
+      <Sidebar activeSection={activeSection} onChangeSection={setActiveSection} />
 
       <main className="main-content">
-        <header className="top-bar">
-          <div>
-            <h1 className="page-title">
-              {(showCheckout || showThankYou) && 'CHECKOUT'}
-              {!showCheckout && !showThankYou && activeSection === 'analytics' && 'Analytics'}
-              {!showCheckout && !showThankYou && activeSection === 'audit' && 'Audit Report'}
-              {!showCheckout && !showThankYou && activeSection === 'packages' && 'Packages'}
-              {!showCheckout && !showThankYou && activeSection === 'account' && 'Account'}
-            </h1>
-            <p className="page-subtitle">
-              {showCheckout || showThankYou
-                ? 'Shipping & Billing'
-                : 'View Recent Schemas Below, See All in Schema History.'}
-            </p>
-          </div>
-          {showCheckout || showThankYou ? (
-            <button
-              className="cart-button"
-              type="button"
-              onClick={() => {
-                setShowCheckout(false);
-                setShowThankYou(false);
-              }}
-            >
-              Back to Dashboards
-            </button>
-          ) : (
-            <button
-              className="cart-button"
-              type="button"
-              onClick={() => setIsCartOpen(true)}
-            >
-              Shopping cart
-            </button>
-          )}
-        </header>
+        <TopBar
+          activeSection={activeSection}
+          showCheckout={showCheckout}
+          showThankYou={showThankYou}
+          onOpenCart={() => setIsCartOpen(true)}
+          onBackToDashboards={() => {
+            setShowCheckout(false);
+            setShowThankYou(false);
+          }}
+        />
 
         {showThankYou && (
           <section className="thankyou-card">
@@ -586,31 +510,16 @@ const AnalyticsDashboard: React.FC = () => {
             </header>
 
             <div className="web-traffic-layout">
-              <div className="web-traffic-legend">
-                <span className="legend-dot legend-clicks" />
-                <span className="legend-label">Clicks</span>
-                <span className="legend-dot legend-impressions" />
-                <span className="legend-label">Impressions</span>
-              </div>
-
-              <div className="web-traffic-chart">
-                <div className="chart-bg" />
-                <div className="chart-lines">
-                  <div className="line clicks" />
-                  <div className="line impressions" />
-                </div>
-                <div className="chart-x-axis">
-                  <span>Oct 10, 2024</span>
-                  <span>Oct 11, 2024</span>
-                  <span>Oct 12, 2024</span>
-                  <span>Oct 13, 2024</span>
-                  <span>Oct 14, 2024</span>
-                  <span>Oct 15, 2024</span>
-                  <span>Oct 16, 2024</span>
-                  <span>Oct 17, 2024</span>
-                  <span>Oct 18, 2024</span>
-                </div>
-              </div>
+              <iframe
+                title="Web Traffic Looker Studio"
+                src="https://lookerstudio.google.com/embed/reporting/46ad2f44-db71-4584-8f2d-283dee53d987/page/mYGiE"
+                width="600"
+                height="450"
+                style={{ border: 0, width: '100%', maxWidth: '100%' }}
+                frameBorder={0}
+                allowFullScreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+              />
             </div>
           </section>
         )}
