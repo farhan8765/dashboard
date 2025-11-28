@@ -6,6 +6,9 @@ const AnalyticsDashboard: React.FC = () => {
     'analytics' | 'audit' | 'packages' | 'account'
   >('analytics');
   const [activeTab, setActiveTab] = useState<'monthly' | 'siteHealth' | 'webTraffic' | 'metaAnalytics' | 'googleAds' | 'googleBusiness'>('monthly');
+  const [activePackageTab, setActivePackageTab] = useState<
+    'everything' | 'reputation' | 'branding' | 'website' | 'app' | 'uiux'
+  >('everything');
 
   return (
     <div className="analytics-app">
@@ -67,7 +70,10 @@ const AnalyticsDashboard: React.FC = () => {
         <header className="top-bar">
           <div>
             <h1 className="page-title">
-              {activeSection === 'audit' ? 'Audit Report' : 'Analytics'}
+              {activeSection === 'analytics' && 'Analytics'}
+              {activeSection === 'audit' && 'Audit Report'}
+              {activeSection === 'packages' && 'Packages'}
+              {activeSection === 'account' && 'Account'}
             </h1>
             <p className="page-subtitle">
               View Recent Schemas Below, See All in Schema History.
@@ -605,33 +611,6 @@ const AnalyticsDashboard: React.FC = () => {
             </div>
           </section>
         )}
-
-        {activeTab === 'googleBusiness' && (
-          <section className="card">
-            <header className="card-header">
-              <h2 className="card-title">Google Ads For Cash For Gold Beckley</h2>
-              <p className="card-subtitle">
-                In February, we&apos;ll enhance online presence, improve website
-                functionality, connect with customers through Valentine&apos;s Day
-                promotions on social media, and run targeted ads focused on the
-                Beckley area.
-              </p>
-            </header>
-
-            <div className="google-biz-layout">
-              <div className="google-biz-inner">
-                <div className="google-biz-logo" />
-                <p className="google-biz-text">
-                  Once you share access, we&apos;ll provide you with
-                  <br />
-                  detailed insights and results for your Google
-                  <br />
-                  My Business profile.
-                </p>
-              </div>
-            </div>
-          </section>
-        )}
         </>
         )}
 
@@ -651,8 +630,263 @@ const AnalyticsDashboard: React.FC = () => {
         )}
 
         {activeSection === 'packages' && (
-          <section className="card placeholder-card">
-            <p>Packages view coming soon.</p>
+          <section className="card packages-card">
+            <div className="packages-tabs">
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'everything' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('everything')}
+              >
+                Everything You Need
+              </button>
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'reputation' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('reputation')}
+              >
+                Reputation Management
+              </button>
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'branding' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('branding')}
+              >
+                Branding/Designs
+              </button>
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'website' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('website')}
+              >
+                Website Development
+              </button>
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'app' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('app')}
+              >
+                App Development
+              </button>
+              <button
+                className={`packages-tab ${
+                  activePackageTab === 'uiux' ? 'active' : ''
+                }`}
+                type="button"
+                onClick={() => setActivePackageTab('uiux')}
+              >
+                UI/UX
+              </button>
+            </div>
+
+            {activePackageTab === 'everything' && (
+              <div className="packages-grid">
+                <div className="package-card">
+                  <h3 className="package-name">Revenue Rocket</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$349</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>3 Graphical Posts</li>
+                    <li>3 Text Posts</li>
+                    <li>Cross Posts</li>
+                    <li>1 Logo</li>
+                    <li>1 Google Ads</li>
+                    <li>7 Website</li>
+                    <li>Maintenance</li>
+                    <li>5 Backlinks</li>
+                    <li>2 Blogs</li>
+                    <li>Technical SEO</li>
+                    <li>On-Page Optimization</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Profit Prodigy</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$799</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>3 Graphical Posts</li>
+                    <li>3 Text Posts</li>
+                    <li>Cross Posts</li>
+                    <li>1 Logo</li>
+                    <li>1 Google Ads</li>
+                    <li>7 Website</li>
+                    <li>Maintenance</li>
+                    <li>5 Backlinks</li>
+                    <li>2 Blogs</li>
+                    <li>Technical SEO</li>
+                    <li>On-Page Optimization</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Growth Gator</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$999</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>3 Graphical Posts</li>
+                    <li>3 Text Posts</li>
+                    <li>Cross Posts</li>
+                    <li>1 Logo</li>
+                    <li>1 Google Ads</li>
+                    <li>7 Website</li>
+                    <li>Maintenance</li>
+                    <li>5 Backlinks</li>
+                    <li>2 Blogs</li>
+                    <li>Technical SEO</li>
+                    <li>On-Page Optimization</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Domination Decoder</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$1499</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>3 Graphical Posts</li>
+                    <li>3 Text Posts</li>
+                    <li>Cross Posts</li>
+                    <li>1 Logo</li>
+                    <li>1 Google Ads</li>
+                    <li>7 Website</li>
+                    <li>Maintenance</li>
+                    <li>5 Backlinks</li>
+                    <li>2 Blogs</li>
+                    <li>Technical SEO</li>
+                    <li>On-Page Optimization</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+              </div>
+            )}
+
+            {activePackageTab === 'reputation' && (
+              <div className="packages-grid">
+                <div className="package-card">
+                  <h3 className="package-name">Essentials</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$299</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>5 Posts per month</li>
+                    <li>1 Campaigns, We Create 1 Campaigns to run advertising of your brand</li>
+                    <li>Monthly Analytics</li>
+                    <li>Reputation Management</li>
+                    <li>Videos</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Foundation</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$799</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>10 Posts Per Month 1 Design 5 Products</li>
+                    <li>2 Campaigns, We Create 2 Campaigns to run advertising of your brand</li>
+                    <li>Monthly Analytics</li>
+                    <li>Reputation Management</li>
+                    <li>Videos</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Evolution</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$1199</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>15 Posts Per Month 1 Design 5 Products</li>
+                    <li>3 Campaigns, We Create 3 Campaigns to run advertising of your brand</li>
+                    <li>1 Videos</li>
+                    <li>Monthly Analytics</li>
+                    <li>Reputation Management</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+
+                <div className="package-card">
+                  <h3 className="package-name">Luxe</h3>
+                  <p className="package-subtitle">
+                    Free Trail Insights Art Plan
+                    <br />
+                    Ideal for beginner artists.
+                  </p>
+                  <div className="package-price-row">
+                    <span className="package-price">$2299</span>
+                    <span className="package-period">per month</span>
+                  </div>
+                  <ul className="package-features">
+                    <li>30 Posts Per Month 1 Design 5 Products</li>
+                    <li>5 Campaigns, We Create 5 Campaigns to run advertising of your brand</li>
+                    <li>4 Videos</li>
+                    <li>Monthly Analytics</li>
+                    <li>Reputation Management</li>
+                  </ul>
+                  <button className="package-button">Add To Cart</button>
+                </div>
+              </div>
+            )}
           </section>
         )}
 
