@@ -9,7 +9,7 @@ const Login: React.FC<LoginProps> = ({ onGoToSignUp, onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+//red
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Login attempted with:', { username, password });
